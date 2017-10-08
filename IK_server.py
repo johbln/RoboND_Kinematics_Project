@@ -17,6 +17,8 @@ from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from geometry_msgs.msg import Pose
 from mpmath import *
 from sympy import *
+import os
+import pickle
 
 def create_TM(alpha, a, d, q):
     T = Matrix([[            cos(q),           -sin(q),           0,             a],   
@@ -69,9 +71,13 @@ def find_first_joints(WC):
     return theta1, theta2, theta3
 
 def find_last_joints(R):
-    theta6 = atan2(-R[1,1], R[1,0])
     theta5 = atan2(sqrt(R[0,2]**2 + R[2,2]**2), R[1,2])
-    theta4 = atan2(R[2,2], -R[0,2])
+    if sin(theta5) < 0:
+        theta4 = atan2(-R[2,2], R[0,2])
+        theta6 = atan2(R[1,1], -R[1,0])
+    else:
+        theta4 = atan2(R[2,2], -R[0,2])
+        theta6 = atan2(-R[1,1], R[1,0])
 
     return theta4, theta5, theta6
 
@@ -140,7 +146,13 @@ def handle_calculate_IK(req):
             
 	    # Calculate joint angles using Geometric IK method
             theta1, theta2, theta3 = find_first_joints(WC)
-            R0_3 = T0_3[:3,:3]
+
+            if not os.path.exists("R0_3.p"):
+                R0_3 = T0_3[:3,:3]
+                pickle.dump(R0_3, open("R0_3.p", "wb"))
+            else:
+                R0_3 = pickle.load(open("R0_3.p", "rb"))
+
             R0_3 = R0_3.evalf(subs={q1: theta1, q2: theta2, q3: theta3})
             R3_6 = R0_3.inv('LU') * R_G
 
