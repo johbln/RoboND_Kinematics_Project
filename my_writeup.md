@@ -29,9 +29,9 @@ Links | alpha(i-1) | a(i-1) | d(i-1) | theta(i)
 5->6 | -pi/2 | 0 | 0 | q6
 6->EE | 0 | 0 | 0.303 | 0
   
-
-alpha(i-1) | Twist angle | Angle from z(i-1) axis to z(i) axis measured along the x(i-1) axis
+Parameter | Name | Definition   
 --- | --- | ---
+alpha(i-1) | Twist angle | Angle from z(i-1) axis to z(i) axis measured along the x(i-1) axis
 a(i-1) | Link length | Distance from z(i-1) axis to z(i) axis measured along the x(i-1) axis
 d(i) | Link offset | Distance from x(i-1) axis to x(i) axis measured along the z(i) axis
 theta(i) | Joint variable | Angle from x(i-1) axis to x(i) axis measured along the z(i) axis
