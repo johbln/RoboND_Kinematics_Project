@@ -1,5 +1,13 @@
+[//]: # (Image References)
+
+[image1]: ./misc_images/readme_img.png
+
 [![Udacity - Robotics NanoDegree Program](https://s3-us-west-1.amazonaws.com/udacity-robotics/Extra+Images/RoboND_flag.png)](https://www.udacity.com/robotics)
 # Robotic arm - Pick & Place project
+![alt text][image1]  
+
+## Introduction
+A robotic arm is a mechanical arm likes human arm. Robotic arms assemble and paint most part of a car and are used many other industries. In this project, I control a robotic arm with six degrees of freedom to perform pick and place actions(just like the Amazon Robotics Challenge) using Inverse Kinematics.  
 
 Make sure you are using robo-nd VM or have Ubuntu+ROS installed locally.
 
